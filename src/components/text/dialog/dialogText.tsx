@@ -47,7 +47,7 @@ const DialogText: React.FC<DialogTextProps> = ({script, onFinal}) => {
                 />
             }
             </div>
-            <button onClick={handleSkip}>Next</button>
+            <button onClick={handleSkip} className="w-1/2 text-left font-bold">Next</button>
         </div>
     )
 }
