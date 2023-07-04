@@ -3,22 +3,31 @@ interface TextStyle {
 }
 
 const afterExplosionScript: {
-    text: string;
-    textStyle?: TextStyle;
-    textClass?: string;
-}[][] = [
-    [
-        {
-            text: "What was that? Maybe "
-        },
-        {
-            text: "you",
-            textClass: "italic"
-        },
-        {
-            text: " should go check it out..."
-        }
-    ]
+    script: {
+        text: string;
+        textStyle?: TextStyle;
+        textClass?: string;
+    }[];
+    choices?: {
+        text: string;
+        textStyle?: TextStyle;
+        textClass?: string;
+    }[];
+}[] = [
+    {
+        script: [
+            {
+                text: "What was that??? I think"
+            },
+            {
+                text: " you ",
+                textClass: "italics"
+            },
+            {
+                text: "should go check it out..."
+            }
+        ]
+    }
 ];
 
 export default afterExplosionScript;
