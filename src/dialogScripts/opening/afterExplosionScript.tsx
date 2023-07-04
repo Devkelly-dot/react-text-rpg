@@ -21,7 +21,7 @@ const afterExplosionScript: {
             },
             {
                 text: " you ",
-                textClass: "italics"
+                textClass: "italic"
             },
             {
                 text: "should go check it out..."

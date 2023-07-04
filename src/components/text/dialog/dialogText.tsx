@@ -25,7 +25,7 @@ const DialogText: React.FC<DialogTextProps> = ({script, onFinal}) => {
     const [startFinished, setStartFinished] = useState(false);
 
     function handleSkip(){
-        if(canNext && scriptIndex+1 < script[scriptIndex].script.length) {
+        if(canNext && (scriptIndex+1 < script.length)) {
             setCanNext(false);
             setScriptIndex(scriptIndex+1);
             setStartFinished(false);
@@ -34,7 +34,7 @@ const DialogText: React.FC<DialogTextProps> = ({script, onFinal}) => {
             onFinal();
         } else {
             setStartFinished(true);
-            if(scriptIndex+1 < script[scriptIndex].script.length) {
+            if(scriptIndex+1 < script.length) {
                 setCanNext(true);
             }
         }
@@ -44,7 +44,7 @@ const DialogText: React.FC<DialogTextProps> = ({script, onFinal}) => {
         setScriptIndex(0);
         setCanNext(false);
         setStartFinished(false);
-    }, [script, onFinal])
+    }, [script])
     
     return (
         <div className="flex flex-col gap-1 w-full">
