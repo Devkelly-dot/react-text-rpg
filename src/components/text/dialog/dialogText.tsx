@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TypeWriter from "../../typewriter/typewriter";
 interface TextStyle {
     [key: string]: string;
