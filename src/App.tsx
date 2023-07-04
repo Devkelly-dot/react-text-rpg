@@ -1,27 +1,17 @@
 import './App.css'
+import DialogText from './components/text/dialog/dialogText'
 import TypeWriter from './components/typewriter/typewriter'
+import introScript from './dialogScripts/opening/introScript'
+import testScript from './dialogScripts/opening/testScript'
 
 function App() {
   return (
-    <>
-      <h1 className='text-red-500'>Hello</h1>
-      <TypeWriter
-        text = {[
-          {
-            text: "Make the word 'cat' always be red. Get ready I'm about to say ",
-          },
-          {
-            text: "cat",
-            textClass: "text-red-500 bg-blue-500"
-          },
-          {
-            text: " ... wow good job"
-          }
-        ]}
-        typeSpeed={50}
-        onFinish={()=>alert("Finished!")}
+    <div className='w-full'>
+      <DialogText
+        script={introScript}
+        onFinal={()=>{alert("It's over.")}}
       />
-    </>
+    </div>
   )
 }
 

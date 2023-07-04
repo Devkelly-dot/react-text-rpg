@@ -23,6 +23,12 @@ const TypeWriter: React.FC<TypeWriterProps> = ({text, onFinish, typeSpeed, style
 
     const [textIndex, setTextIndex] = useState(0);
     const [textTextIndex, setTextTextIndex] = useState(0);
+    useEffect(()=>{
+        console.log("here")
+        setCurrentText([]);
+        setTextIndex(0);
+        setTextTextIndex(0);
+    }, [text])
 
     useEffect(()=>{
         if(text.length <= textIndex) {
@@ -62,8 +68,9 @@ const TypeWriter: React.FC<TypeWriterProps> = ({text, onFinish, typeSpeed, style
         }, typeSpeed);
     
         return () => clearTimeout(timeout); 
-    }, [textTextIndex])
+    }, [textTextIndex, textIndex])
 
+    
     return (
         <div className={className?className:'flex'} style={style}>
             {
