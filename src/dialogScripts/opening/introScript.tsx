@@ -5,7 +5,8 @@ const introScript: {
 }[][] = [
     [
         {
-            text: "Hello, welcome to this brand new text based RPG. "
+            text: "Hello, welcome to this brand new text based RPG. ",
+            textStyle: {color:"red"}
         },
         {
             text: "I put a "

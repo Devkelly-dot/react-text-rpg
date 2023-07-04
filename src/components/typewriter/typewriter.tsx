@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import TypeWriterLetter from './typeWriterLetter';
 
+interface TextStyle {
+    [key: string]: string;
+}
+
 interface TypeWriterProps {
     text: {
         text: string;
-        textStyle?: object;
+        textStyle?: TextStyle;
         textClass?: string;
     }[];
     onFinish?:()=>void;
@@ -16,24 +20,27 @@ interface TypeWriterProps {
 const TypeWriter: React.FC<TypeWriterProps> = ({text, onFinish, typeSpeed, style, className}) => {
     const [currentText, setCurrentText] = useState<{
             text: string;
-            textStyle?: object;
+            textStyle?: TextStyle;
             textClass?: string;
         }[]>([]);
 
 
     const [textIndex, setTextIndex] = useState(0);
     const [textTextIndex, setTextTextIndex] = useState(0);
+    const [finished, setFinished] = useState(false);
+
     useEffect(()=>{
-        console.log("here")
         setCurrentText([]);
         setTextIndex(0);
         setTextTextIndex(0);
+        setFinished(false)
     }, [text])
 
     useEffect(()=>{
         if(text.length <= textIndex) {
             if(onFinish) {
                 onFinish();
+                setFinished(true);
             }
             return;
         }
@@ -70,7 +77,31 @@ const TypeWriter: React.FC<TypeWriterProps> = ({text, onFinish, typeSpeed, style
         return () => clearTimeout(timeout); 
     }, [textTextIndex, textIndex])
 
-    
+    function generateFullText() {
+        if(!text) 
+            return "";
+        
+        let return_text = "";
+        text.forEach((t)=>{
+            let styleString = "";
+            
+            if(t.textStyle) {
+                styleString = Object.keys(t.textStyle)
+                .map((key) => `${key}: ${(t.textStyle || {})[key]}`)
+                .join("; ");
+            }
+
+            return_text += `<span class="${t.textClass}" style="${styleString}">${t.text}</span>`;
+        });
+
+        return `<div>${return_text}</div>`;
+    }
+
+    if(finished) {
+        return (
+            <div dangerouslySetInnerHTML={{ __html: generateFullText() }}></div>
+        )
+    }
     return (
         <div className={className?className:'flex'} style={style}>
             {
