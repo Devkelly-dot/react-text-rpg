@@ -1,6 +1,10 @@
+interface TextStyle {
+    [key: string]: string;
+}
+
 const introScript: {
     text: string;
-    textStyle?: object;
+    textStyle?: TextStyle;
     textClass?: string;
 }[][] = [
     [

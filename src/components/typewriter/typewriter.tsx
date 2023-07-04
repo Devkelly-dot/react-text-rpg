@@ -15,9 +15,10 @@ interface TypeWriterProps {
     typeSpeed: number;
     style?: object;
     className?: string;
+    startFinished?: boolean;
 }
 
-const TypeWriter: React.FC<TypeWriterProps> = ({text, onFinish, typeSpeed, style, className}) => {
+const TypeWriter: React.FC<TypeWriterProps> = ({text, onFinish, typeSpeed, style, className, startFinished}) => {
     const [currentText, setCurrentText] = useState<{
             text: string;
             textStyle?: TextStyle;
@@ -27,7 +28,7 @@ const TypeWriter: React.FC<TypeWriterProps> = ({text, onFinish, typeSpeed, style
 
     const [textIndex, setTextIndex] = useState(0);
     const [textTextIndex, setTextTextIndex] = useState(0);
-    const [finished, setFinished] = useState(false);
+    const [finished, setFinished] = useState(startFinished ? startFinished : false);
 
     useEffect(()=>{
         setCurrentText([]);
@@ -76,6 +77,13 @@ const TypeWriter: React.FC<TypeWriterProps> = ({text, onFinish, typeSpeed, style
     
         return () => clearTimeout(timeout); 
     }, [textTextIndex, textIndex])
+
+    useEffect(()=>{
+        if(startFinished === true || startFinished === false) {
+            if(startFinished === true) 
+                setTextIndex(text.length+1);
+        }
+    },[startFinished]);
 
     function generateFullText() {
         if(!text) 
