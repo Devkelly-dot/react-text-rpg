@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TypeWriter from "../../typewriter/typewriter";
 interface TextStyle {
     [key: string]: string;
@@ -33,6 +33,11 @@ const DialogText: React.FC<DialogTextProps> = ({script, onFinal}) => {
         }
     }
 
+    useEffect(()=>{
+        setScriptIndex(0);
+        setCanNext(false);
+        setStartFinished(false);
+    }, [script])
     return (
         <div className="flex flex-col gap-1 w-full">
             <div>
