@@ -1,7 +1,7 @@
-import { DialogChoice } from "../../../interfaces/dialog";
+import { TypeWriterSubString } from "../../../interfaces/script";
 
 interface DialogChoicesProps {
-    choices: DialogChoice[];
+    choices: TypeWriterSubString[];
     onChoose?: (choice_index:number)=>void;
 }
 
@@ -10,7 +10,7 @@ const DialogChoices: React.FC<DialogChoicesProps> = ({choices, onChoose}) => {
     return ( 
         <>
             {
-                choices.map((choice:DialogChoice, index)=>{
+                choices.map((choice:TypeWriterSubString, index)=>{
                     return (
                         <div
                             style={choice.textStyle?choice.textStyle:{}} 
