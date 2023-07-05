@@ -6,8 +6,20 @@ import afterExplosionScript from '../../../dialogScripts/opening/afterExplosionS
 const IntroForestScene: React.FC = () => {
     const [step, setStep] = useState(0);
 
+    function handleChoices(index:number) {
+        switch(index) {
+            case 0:
+                alert("You found gold, you win!");
+                window.location.reload();
+                break;
+            case 1: 
+                alert("You went home but you didn't find gold, sorry :(");
+                window.location.reload();
+                break;
+        }
+    }
     return (
-        <div className='w-screen h-screen flex flex-col justify-center items-center sm:px-0 md:px-16'>
+        <div className='w-screen h-screen flex flex-col justify-center items-center sm:px-2 md:px-16'>
             <div className=' w-full '>
                 {
                     step === 0 ?
@@ -18,6 +30,7 @@ const IntroForestScene: React.FC = () => {
                     step === 1?
                     <DialogText
                         script={afterExplosionScript}
+                        onChoose = {handleChoices}
                     />:<></>
                 }
                 

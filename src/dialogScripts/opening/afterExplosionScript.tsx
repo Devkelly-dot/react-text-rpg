@@ -17,10 +17,12 @@ const afterExplosionScript:DialogScript = {
     ],
     choices: [
         {
-            text: "Check it out"
+            text: "Check it out",
+            textClass: "font-bold text-lg hover:text-red-500 cursor-pointer"
         },
         {
-            text: "Ignore it"
+            text: "Ignore it",
+            textClass: "italic text-sm hover:text-red-500 cursor-pointer"
         }
     ]
 }
