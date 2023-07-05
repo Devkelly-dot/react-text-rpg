@@ -2,6 +2,7 @@ import {useState} from 'react'
 import DialogText from "../../../components/text/dialog/dialogText";
 import introScript from "../../../dialogScripts/opening/introScript";
 import afterExplosionScript from '../../../dialogScripts/opening/afterExplosionScript';
+import findingGoldScript from '../../../dialogScripts/opening/findingGoldScript';
 
 const IntroForestScene: React.FC = () => {
     const [step, setStep] = useState(0);
@@ -9,8 +10,7 @@ const IntroForestScene: React.FC = () => {
     function handleChoices(index:number) {
         switch(index) {
             case 0:
-                alert("You found gold, you win!");
-                window.location.reload();
+                setStep(2);
                 break;
             case 1: 
                 alert("You went home but you didn't find gold, sorry :(");
@@ -31,7 +31,12 @@ const IntroForestScene: React.FC = () => {
                     <DialogText
                         script={afterExplosionScript}
                         onChoose = {handleChoices}
-                    />:<></>
+                    />:
+                    step === 2?
+                    <DialogText
+                        script={findingGoldScript}
+                        onFinal={()=>{alert("You win!"); setStep(3)}}
+                    />:<div>Enjoy your riches!</div>
                 }
                 
             </div>
