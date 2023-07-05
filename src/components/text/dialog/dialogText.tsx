@@ -1,21 +1,9 @@
 import { useState, useEffect } from "react";
+import { TextScript } from "../../../interfaces/script";
 import TypeWriter from "../../typewriter/typewriter";
-interface TextStyle {
-    [key: string]: string;
-}
+
 interface DialogTextProps {
-    script: {
-        script: {
-            text: string;
-            textStyle?: TextStyle;
-            textClass?: string;
-        }[];
-        choices?: {
-            text: string;
-            textStyle?: TextStyle;
-            textClass?: string;
-        }[];
-    }[],
+    script: TextScript;
     onFinal?:()=>void;
 }
 
@@ -25,7 +13,7 @@ const DialogText: React.FC<DialogTextProps> = ({script, onFinal}) => {
     const [startFinished, setStartFinished] = useState(false);
 
     function handleSkip(){
-        if(canNext && (scriptIndex+1 < script.length)) {
+        if(canNext && (scriptIndex+1 < script.scripts.length)) {
             setCanNext(false);
             setScriptIndex(scriptIndex+1);
             setStartFinished(false);
@@ -34,7 +22,7 @@ const DialogText: React.FC<DialogTextProps> = ({script, onFinal}) => {
             onFinal();
         } else {
             setStartFinished(true);
-            if(scriptIndex+1 < script.length) {
+            if(scriptIndex+1 < script.scripts.length) {
                 setCanNext(true);
             }
         }
@@ -50,9 +38,9 @@ const DialogText: React.FC<DialogTextProps> = ({script, onFinal}) => {
         <div className="flex flex-col gap-1 w-full">
             <div>
             {
-                script&&script[scriptIndex]&&script[scriptIndex].script&&
+                script&&script.scripts[scriptIndex]&&
                 <TypeWriter
-                    text = {script[scriptIndex].script}
+                    text = {script.scripts[scriptIndex]}
                     typeSpeed={50}
                     className={"flex w-full flex-wrap"}
                     onFinish={()=>{setCanNext(true);}}

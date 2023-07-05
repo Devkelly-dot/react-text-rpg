@@ -1,33 +1,28 @@
-interface TextStyle {
-    [key: string]: string;
-}
+import { TextScript } from "../../interfaces/script";
 
-const afterExplosionScript: {
-    script: {
-        text: string;
-        textStyle?: TextStyle;
-        textClass?: string;
-    }[];
-    choices?: {
-        text: string;
-        textStyle?: TextStyle;
-        textClass?: string;
-    }[];
-}[] = [
-    {
-        script: [
+const afterExplosionScript:TextScript = {
+    scripts: [
+        [
             {
-                text: "What was that??? I think"
+                text: "What was"
             },
             {
-                text: " you ",
+                text: " that",
                 textClass: "italic"
             },
             {
-                text: "should go check it out..."
+                text: "???"
             }
         ]
-    }
-];
+    ],
+    choices: [
+        {
+            text: "Check it out"
+        },
+        {
+            text: "Ignore it"
+        }
+    ]
+}
 
 export default afterExplosionScript;

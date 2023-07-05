@@ -1,21 +1,8 @@
-interface TextStyle {
-    [key: string]: string;
-}
+import { TextScript } from "../../interfaces/script";
 
-const introScript: {
-    script: {
-        text: string;
-        textStyle?: TextStyle;
-        textClass?: string;
-    }[];
-    choices?: {
-        text: string;
-        textStyle?: TextStyle;
-        textClass?: string;
-    }[];
-}[] = [
-    {
-        script: [
+const introScript:TextScript = {
+    scripts: [
+        [
             {
                 text: "Hello, welcome to this brand new text based RPG. ",
                 textStyle: {color:"red"}
@@ -31,15 +18,7 @@ const introScript: {
                 text: " of work into it so I really hope you like it!"
             }
         ],
-        choices: [
-            {
-                text: "Jump",
-                textClass: "font-bold"
-            },
-        ]
-    },
-    {
-        script: [
+        [
             {
                 text: "You wake up in a daze, surrounded by shrub. It appears you've found yourself cold and alone in the "
             },
@@ -48,7 +27,8 @@ const introScript: {
                 textClass: "font-bold text-red-500"
             }
         ]
-    }
-];
+        
+    ]
+}
 
 export default introScript;

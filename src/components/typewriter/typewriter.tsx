@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { TypeWriterSubString } from '../../interfaces/script';
 import TypeWriterLetter from './typeWriterLetter';
 
 interface TextStyle {
@@ -6,11 +7,7 @@ interface TextStyle {
 }
 
 interface TypeWriterProps {
-    text: {
-        text: string;
-        textStyle?: TextStyle;
-        textClass?: string;
-    }[];
+    text: TypeWriterSubString[];
     onFinish?:()=>void;
     typeSpeed: number;
     style?: object;
