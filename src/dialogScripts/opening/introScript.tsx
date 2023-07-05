@@ -1,6 +1,6 @@
-import { TextScript } from "../../interfaces/script";
+import { DialogScript } from "../../interfaces/dialog";
 
-const introScript:TextScript = {
+const introScript:DialogScript = {
     scripts: [
         [
             {

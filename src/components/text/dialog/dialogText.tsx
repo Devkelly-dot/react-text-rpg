@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { DialogScript } from "../../../interfaces/dialog";
 import { TextScript } from "../../../interfaces/script";
 import TypeWriter from "../../typewriter/typewriter";
 
 interface DialogTextProps {
-    script: TextScript;
+    script: DialogScript;
     onFinal?:()=>void;
 }
 

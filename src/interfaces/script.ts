@@ -10,5 +10,4 @@ export interface TypeWriterSubString {
 
 export interface TextScript {
     scripts: TypeWriterSubString[][];
-    choices?: TypeWriterSubString[];
 }
